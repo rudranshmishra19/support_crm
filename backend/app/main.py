@@ -14,7 +14,7 @@ app = FastAPI(title="Customer Support Ticketing CRM API")
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://support-crm-1-ji9j.onrender.com/"],  # In production, specify the actual frontend domains
+    allow_origins=["https://support-crm-1-ji9j.onrender.com"],  # In production, specify the actual frontend domains
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
