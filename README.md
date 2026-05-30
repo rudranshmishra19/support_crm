@@ -42,7 +42,7 @@ datastraw__crm/
     ├── tailwind.config.js          # Tailwind Configuration
     └── package.json                # Frontend Dependencies
 💾 Database Schema
-The SQLite database (tickets_crm.db) is normalized into exactly two tables:
+The SQLite database (support_crm.db) is normalized into exactly two tables:
 
 1. tickets
 Column	Type	Description
