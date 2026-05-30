@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext, useCallback } fr
 
 const TicketContext = createContext();
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL + '/api';
 
 export const TicketProvider = ({ children }) => {
   const [tickets, setTickets] = useState([]);
