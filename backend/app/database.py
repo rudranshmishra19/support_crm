@@ -4,8 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./support_crm.db"
 
-# connect_args={"check_same_thread": False} is required only for SQLite.
-# It allows multiple threads to access the same database.
+
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )

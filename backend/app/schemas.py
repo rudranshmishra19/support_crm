@@ -2,7 +2,6 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from typing import List, Optional
 
-# Note schemas
 class NoteBase(BaseModel):
     note_text: str
 
@@ -18,7 +17,7 @@ class NoteResponse(NoteBase):
         orm_mode = True
         from_attributes = True
 
-# Ticket schemas
+
 class TicketCreate(BaseModel):
     customer_name: str
     customer_email: EmailStr
@@ -60,5 +59,5 @@ class TicketDetailsResponse(BaseModel):
         from_attributes = True
 
 class TicketUpdate(BaseModel):
-    status: str  # e.g., Open, In Progress, Closed
-    notes: Optional[str] = None  # Optional note text to add when updating
+    status: str  
+    notes: Optional[str] = None  

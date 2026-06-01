@@ -12,11 +12,11 @@ class Ticket(Base):
     customer_email = Column(String, nullable=False)
     subject = Column(String, nullable=False)
     description = Column(Text, nullable=False)
-    status = Column(String, default="Open", nullable=False)  # Open, In Progress, Closed
+    status = Column(String, default="Open", nullable=False) 
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    # Relationship to notes
+
     notes = relationship("TicketNote", back_populates="ticket", cascade="all, delete-orphan")
 
 class TicketNote(Base):
@@ -27,5 +27,5 @@ class TicketNote(Base):
     note_text = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-    # Relationship back to ticket
+    
     ticket = relationship("Ticket", back_populates="notes")

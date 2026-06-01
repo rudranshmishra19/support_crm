@@ -4,7 +4,6 @@ import datetime
 import models, schemas
 
 def generate_next_ticket_id(db: Session) -> str:
-    # Find the latest ticket created
     latest_ticket = db.query(models.Ticket).order_by(models.Ticket.id.desc()).first()
     latest_num = 0
     if latest_ticket and latest_ticket.ticket_id.startswith("TKT-"):
@@ -23,7 +22,7 @@ def get_tickets(db: Session, status: str = None, search: str = None):
         
     if search and search.strip() != "":
         search_term = f"%{search}%"
-        # Search by customer name, subject, or ticket_id
+    
         query = query.filter(
             or_(
                 models.Ticket.customer_name.ilike(search_term),
@@ -33,7 +32,7 @@ def get_tickets(db: Session, status: str = None, search: str = None):
             )
         )
     
-    # Return sorted by newest first
+    
     return query.order_by(models.Ticket.created_at.desc()).all()
 
 def get_ticket_by_id(db: Session, ticket_id: str):
@@ -58,12 +57,11 @@ def update_ticket(db: Session, ticket_id: str, ticket_update: schemas.TicketUpda
     db_ticket = get_ticket_by_id(db, ticket_id)
     if not db_ticket:
         return None
-    
-    # Update status
+   
     db_ticket.status = ticket_update.status
     db_ticket.updated_at = datetime.datetime.utcnow()
     
-    # Add note if provided
+   
     if ticket_update.notes and ticket_update.notes.strip() != "":
         db_note = models.TicketNote(
             ticket_id=ticket_id,
